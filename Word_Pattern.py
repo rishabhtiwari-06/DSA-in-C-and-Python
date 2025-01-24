@@ -6,9 +6,12 @@ class Solution:
         words = s.split(" ")
         if len(words) != len(pattern):
             return False
-        pattern_indices = [pattern.index(char) for char in pattern]
-        word_indices = [words.index(word) for word in words]
-        return pattern_indices == word_indices
+        pattern_list = [pattern.index(char) for char in pattern]
+        words_list = [words.index(char) for char in words]
+        if pattern_list == words_list:
+            return True
+        else:
+            return False
 
 
 if __name__ == "__main__":
