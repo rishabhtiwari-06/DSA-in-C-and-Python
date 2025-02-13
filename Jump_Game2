@@ -1,0 +1,52 @@
+# In this problem we have a staircase nd each value in list n shows the height of each step nd you can either take one or two step nd you have to reach the top with the least height differnce
+
+from typing import List
+def GameJump(n: List[int]):
+    l = len(n)
+    prev1 =0
+    prev2=0
+    curr = 0
+    for i in range(1,l):
+        left = prev1 + abs(n[i]-n[i-1])
+        right = float('inf') if i-2<0 else prev2+ abs(n[i]-n[i-2])
+        curr = min(left, right)
+        prev2 = prev1
+        prev1 = curr
+    return prev1
+n = [30, 10, 60, 10, 60, 50]
+print(GameJump(n))
+
+# from typing import List
+# def GameJump(n: List[int]):
+#     l = len(n)
+#     dp = [-1]*(l)
+#     dp[0] =0
+#     for i in range(1,l):
+#         if dp[i] !=-1:
+#             return dp[i]
+#         left = dp[i-1]+ abs(n[i]-n[i-1])
+#         right = float('inf') if i-2<0 else dp[i-2]+ abs(n[i]-n[i-2])
+#         dp[i] = min(left, right)
+#     return dp[i]
+# n = [30, 10, 60, 10, 60, 50]
+# print(GameJump(n))
+
+
+# from typing import List
+# def GameJump(n: List[int]):
+#     l = len(n)
+#     dp = [-1]*(l)
+#     def calculate(i):
+#         if i == 0:
+#             return 0
+#         if dp[i] != -1: 
+#             return dp[i]
+#         left = calculate(i-1) + abs(n[i]-n[i-1])
+#         right = float('inf') if i - 2 < 0 else calculate(i - 2) + abs(n[i] - n[i - 2])
+#         dp[i] = min(left, right)
+#         return dp[i]
+#     return calculate(l-1)
+        
+
+# n = [10,20,30,10]
+# print(GameJump(n))
